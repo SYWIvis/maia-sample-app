@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS products;
+
+CREATE TABLE products (
+  id UUID NOT NULL PRIMARY KEY,
+  name VARCHAR(128) NOT NULL,
+  price NUMERIC(18,2) NOT NULL
+);
+

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+  <Match>
+    <Class name="~co\.ivis\.infrastructure\.repository\.mybatis\.generated\.entity\..*EntityExample(\$GeneratedCriteria)?" />
+    <Method name="~get(OredCriteria|AllCriteria|Criteria)" />
+    <Bug code="EI" />
+  </Match>
+</FindBugsFilter>

@@ -1,0 +1,42 @@
+buildscript {
+  apply from: 'dependencies.gradle'
+}
+ plugins {
+  id 'com.github.spotbugs' version '6.4.2' apply false
+}
+subprojects {
+  apply plugin: 'java'
+  apply plugin: 'jacoco'
+  apply plugin: 'checkstyle'
+  apply plugin: 'com.github.spotbugs'
+  dependencies {
+    annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+  }
+  test {
+    jvmArgs=['-Dspring.profiles.active=test']
+    useJUnitPlatform()
+	finalizedBy jacocoTestReport
+  }
+  checkstyle {
+  toolVersion = '14.0.0'
+}
+
+spotbugs {
+  excludeFilter.set(rootProject.file('config/spotbugs/exclude-filter.xml'))
+  ignoreFailures = true
+}
+
+jacocoTestReport {
+  reports {
+    html.required = true
+  }
+  afterEvaluate {
+    classDirectories.setFrom(classDirectories.files.collect {
+      fileTree(dir: it, excludes: ['**/xxx/*', '**/yyy.class'])
+    })
+  }
+}
+}

@@ -1,0 +1,84 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version "${springBootVersion}"
+	id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+}
+
+group = 'co.ivis'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+sourceSets {
+  main {
+    resources {
+      srcDir 'src/main/java'
+      exclude '**/*.java'
+    }
+  }
+}
+
+configurations {
+  mybatisTasks
+  all {
+    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+  }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
+	implementation 'com.h2database:h2:2.4.240'
+
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5'
+	implementation project(':application-core')
+	implementation project(':system-common')
+
+	mybatisTasks "org.mybatis.generator:mybatis-generator-core:2.0.0"
+	mybatisTasks "com.h2database:h2:2.4.240"
+	mybatisTasks "com.github.javaparser:javaparser-core:3.28.2"
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+bootJar {
+  enabled = false
+}
+jar {
+  enabled = true
+}
+tasks.register('runMyBatisGenerator') {
+  doLast {
+    ant.project.setProperty('mbg.java.targetProject', file('src/main/java').absolutePath)
+    ant.project.setProperty('mbg.resources.targetProject', file('src/main/resources').absolutePath)
+    ant.taskdef(
+      name: 'mybatisGenerator',
+      classname: 'org.mybatis.generator.ant.GeneratorAntTask',
+      classpath: configurations.mybatisTasks.asPath
+    )
+    ant.mybatisGenerator(
+      javaMergeEnabled: true,
+      configfile: file('src/main/resources/mybatisGeneratorConfig.xml'),
+      verbose: true
+    ) {
+      propertyset {
+        propertyref(name: 'mbg.java.targetProject')
+        propertyref(name: 'mbg.resources.targetProject')
+      }
+    }
+  }
+}

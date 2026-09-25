@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "https://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="local" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin"/>
+        <commentGenerator>
+            <property name="minimizeComments" value="true" />
+        </commentGenerator>
+        <jdbcConnection driverClass="org.h2.Driver"
+                        connectionURL="jdbc:h2:~/sample-app-db"
+                        userId="sa"
+                        password="" />
+        <modelGenerator targetPackage="co.ivis.infrastructure.repository.mybatis.generated.entity"
+                        targetProject="${mbg.java.targetProject}" />
+        <sqlMapGenerator targetPackage="co.ivis.infrastructure.repository.mybatis.generated.mapper"
+                        targetProject="${mbg.resources.targetProject}" />
+        <clientGenerator targetPackage="co.ivis.infrastructure.repository.mybatis.generated.mapper"
+                        targetProject="${mbg.java.targetProject}"
+                        type="XMLMAPPER" />
+        <table schema="" tableName="products" domainObjectName="ProductEntity" mapperName="ProductMapper">
+            <property name="mapUnderscoreToCamelCase" value="true" />
+        </table>
+        <table schema="" tableName="users" domainObjectName="UserEntity" mapperName="UserMapper">
+            <property name="mapUnderscoreToCamelCase" value="true" />
+        </table>
+    </context>
+</generatorConfiguration>

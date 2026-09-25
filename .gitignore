@@ -1,0 +1,9 @@
+demo/demo/build/
+demo/demo/**/build/
+demo/demo/.gradle/
+demo/demo/**/*.class
+demo/demo/**/hs_err_pid*.log
+
+frontend/**/node_modules/
+frontend/**/dist/
+frontend/**/.vite/

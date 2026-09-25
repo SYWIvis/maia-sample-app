@@ -1,0 +1,19 @@
+ext {
+  // プラグインのバージョン (plugin versions)
+  springBootVersion = '4.1.1'
+  springDependencyManagementVersion = '1.1.7'
+  springdocOpenapiGradlePluginVersion = '1.9.0' 
+
+  // 依存ライブラリのバージョン (dependency library versions)
+  springdocOpenapiVersion = '3.0.3'  // same version as your web build.gradle
+
+  // ライブラリ定義文字列 (library definition strings)
+  supportDependencies = [
+    spring_boot_starter_webmvc : 'org.springframework.boot:spring-boot-starter-webmvc',
+    spring_boot_starter_actuator : 'org.springframework.boot:spring-boot-starter-actuator',
+    spring_boot_starter_log4j2 : 'org.springframework.boot:spring-boot-starter-log4j2',
+    spring_boot_starter_webmvc_test : 'org.springframework.boot:spring-boot-starter-webmvc-test',
+    springdoc_openapi_starter_webmvc_ui : "org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocOpenapiVersion",
+    h2database : "com.h2database:h2",
+  ]
+}
