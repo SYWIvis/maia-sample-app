@@ -6,4 +6,4 @@ demo/demo/**/hs_err_pid*.log
 
 frontend/**/node_modules/
 frontend/**/dist/
-frontend/**/.vite/
+frontend/**/.vite/demo/demo/web/src/main/resources/static/

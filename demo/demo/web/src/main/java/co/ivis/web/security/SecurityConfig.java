@@ -22,6 +22,8 @@ public class SecurityConfig {
         .authorizeHttpRequests(auth -> auth
             .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/products/**").permitAll()
             .requestMatchers("/api/users/register", "/v3/api-docs").permitAll()
+                        .requestMatchers("/", "/index.html", "/assets/**", "/favicon.ico",
+                "/about", "/login", "/profile", "/change-password", "/products/**").permitAll()
             .anyRequest().authenticated()
         )
         .httpBasic(basic -> {});
