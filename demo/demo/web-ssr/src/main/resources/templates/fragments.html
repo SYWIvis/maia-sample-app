@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="navigation">
+  <nav aria-label="Main navigation">
+    <a th:href="@{/}">About</a>
+    <a th:href="@{/products}">Products</a>
+    <a th:href="@{/profile}">My Account</a>
+    <a th:href="@{/login}">Log in</a>
+    <form th:action="@{/logout}" method="post">
+      <button type="submit">Log out</button>
+    </form>
+  </nav>
+</header>
+</body>
+</html>

@@ -26,4 +26,8 @@ public class FakeProductRepository implements ProductRepository {
   public void delete(String id) {
     data.removeIf(p -> p.getId().equals(id));
   }
+  //@Override
+  public Product findById(String id) {
+  return data.stream().filter(p -> p.getId().equals(id)).findFirst().orElse(null);
+}
 }

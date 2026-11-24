@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Account | Maia</title>
+  <link rel="stylesheet" th:href="@{/css/site.css}">
+</head>
+<body>
+<div th:replace="~{fragments :: navigation}"></div>
+<main>
+  <h1>My Account</h1>
+  <p>Username: <span th:text="${username}"></span></p>
+  <a th:href="@{/change-password}">Change password</a>
+</main>
+</body>
+</html>

@@ -1,0 +1,1 @@
+import{a as e,b as t,c as n}from"./runtime-core.esm-bundler-F7yVbpDM.js";import{n as r}from"./index-BRodntBw.js";var i={},a={class:`about`};function o(r,i){return t(),n(`div`,a,[...i[0]||=[e(`h1`,null,`This is an about page`,-1)]])}var s=r(i,[[`render`,o]]);export{s as default};

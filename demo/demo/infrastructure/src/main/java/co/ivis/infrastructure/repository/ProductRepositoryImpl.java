@@ -51,6 +51,14 @@ public class ProductRepositoryImpl implements ProductRepository {
     example.createCriteria().andIdEqualTo(uuidStringToBytes(id));
     productMapper.deleteByExample(example);
   }
+  @Override
+  public Product findById(String id) {
+    ProductEntity entity = productMapper.selectByPrimaryKey(uuidStringToBytes(id));
+    if (entity == null) {
+      return null;
+    }
+    return new Product(bytesToUuidString(entity.getId()), entity.getName(), entity.getPrice());
+  }
 
   private String bytesToUuidString(byte[] bytes) {
     ByteBuffer bb = ByteBuffer.wrap(bytes);

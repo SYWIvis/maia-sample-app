@@ -7,4 +7,5 @@ public interface ProductRepository {
   void update(Product product);
   void create(Product product);
   void delete(String id);
+  Product findById(String id);
 }

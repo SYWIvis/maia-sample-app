@@ -24,4 +24,7 @@ public class ProductApplicationService {
     public void deleteProduct(String id){
         productRepository.delete(id);
     }
+    public Product getProduct(String id) {
+        return productRepository.findById(id);
+    }
 }
